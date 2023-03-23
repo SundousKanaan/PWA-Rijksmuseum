@@ -1,16 +1,17 @@
-const express = require('express');
+import express from 'express';
+import router from './routes/objects.js';
+
 const app = express();
 
-app.use(express.static('public'));
+app.use(express.static("public"));
+app.set('views', 'views')
+app.set('view engine', 'ejs');
 
-app.set('view engine', 'ejs' )
+// home page
+app.get('/', (req, res) => {
+    console.log("Hi index");
+    res.render('index');
+});
 
-router.get('/', (req,res) => {
-    res.render("index");
-    res.send("Hi");
-})
-
-
-const userRouter = require('./routes/objects.js')
-app.use('/#object', userRouter)
+app.use('/object', router);
 app.listen(3000);
