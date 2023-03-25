@@ -18,7 +18,7 @@ app.get('/', async(req, res) => {
         const data = await fetch.fetchData( API_URL, API_KEY);
         // res.json(data);
         res.render('index' , {data: data , object: "/object/", dataDetail:undefined});
-        console.log("fetch" , data)
+        console.log("fetch")
 
       } catch (error) {
         res.status(500).send(error.message);

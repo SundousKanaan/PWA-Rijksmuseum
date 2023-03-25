@@ -46,7 +46,7 @@ async function fetchZoekURL(API_URL,zoeken) {
 }
 
 
-console.log(fetchZoekURL(API_URL, "anoniem"));
+// console.log(fetchZoekURL(API_URL, "anoniem"));
 
 export default {
   fetchData,

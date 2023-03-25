@@ -30,29 +30,62 @@
 
                 <div>
                     <p>Type:</p>
-                    <p><%- data.artObject.objectTypes %></p>
+                    <% if (data.artObject.objectTypes === null ) { %>
+                        <p>
+                            Unknown
+                        </p>
+                    <% } else { %>
+                        <p><%- data.artObject.objectTypes %></p>
+                    <% } %>
                 </div>
 
                 <div>
                     <p>Techniques:</p>
-                    <p><%- data.artObject.techniques %></p>
+                    <% if (data.artObject.techniques === null ) { %>
+                        <p>
+                            Unknown
+                        </p>
+                    <% } else { %>
+                        <p><%- data.artObject.techniques %></p>
+                    <% } %>
                 </div>
+
                 <div>
                     <p>Kunst id: </p>
                     <p> <%- data.artObject.id %></p>
                 </div>
+
                 <div>
                     <p>Materials:</p>
-                    <p> <%- data.artObject.material %></p>
+                    <% if (data.artObject.material === null ) { %>
+                        <p>
+                            Unknown
+                        </p>
+                    <% } else { %>
+                        <p> <%- data.artObject.material %></p>
+                        <% } %>
                 </div>
+
                 <div>
                     <p>PresentingDate:</p>
-                    <p><%- data.artObject.dating.presentingDate %></p>
+                    <% if (data.artObject.dating.presentingDate === null ) { %>
+                        <p>
+                            Unknown
+                        </p>
+                    <% } else { %>
+                        <p><%- data.artObject.dating.presentingDate %></p>
+                        <% } %>
                 </div>
 
                 <div>
                     <p>ProductionPlaces:</p>
-                    <p><%- data.artObject.dating.productionPlaces %></p>
+                    <% if (data.artObject.dating.productionPlaces === null ) { %>
+                        <p>
+                            Unknown
+                        </p>
+                    <% } else { %>
+                        <p><%- data.artObject.dating.productionPlaces %></p>
+                        <% } %>
                 </div>
 
             </section>
@@ -63,3 +96,6 @@
     </body>
 
 </html>
+
+
+<!-- /object/NG-444 -->

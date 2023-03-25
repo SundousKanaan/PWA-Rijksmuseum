@@ -14,6 +14,7 @@ router.get('/:objectNumber', async (req, res) => {
         // res.json(dataDetail);
         // res.send(dataDetail.artObject.title)
         res.render('object' , {data: dataDetail, object: "/object/"});
+        console.log(data.artObject.techniques);
 
       } catch (error) {
         res.status(500).send(error.message);
