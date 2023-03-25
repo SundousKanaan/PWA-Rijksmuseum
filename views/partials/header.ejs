@@ -1,6 +1,6 @@
 <header>
     <h1>
-        <img src="./images/rijksmuseum.svg" alt="Rijksmuseum logo">
+        <img src="../../images/rijksmuseum.svg" alt="Rijksmuseum logo">
     </h1>
     <p>Welkom in onze wereld van kunst.</p>
     <a href="#zoekbalk">
@@ -27,4 +27,11 @@
             </g>
         </svg>
     </a>
+    <ul>
+        <% data.artObjects.slice(0, 5).forEach(top5ArtObject => { %>
+         <li>
+            <img src="<%- top5ArtObject.webImage.url %>" alt="<%- top5ArtObject.longTitle %>" />
+         </li>
+        <% }) %>
+    </ul>
 </header>

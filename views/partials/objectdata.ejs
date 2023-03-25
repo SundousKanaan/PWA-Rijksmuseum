@@ -1,4 +1,57 @@
+    <article>
+        <a href="object/zoeken_page"></a>
+        <!-- <a href="object/open_image"></a> -->
+        <!-- <a href="object/details_page"></a> -->
 
-<article>
-    <button></button>
-</article>
+        <button></button>
+
+        <!-- <button></button> -->
+        <!-- <button></button> -->
+
+        <img src="<%- data.artObject.webImage.url %>" alt="<%- data.artObject.longTitle %>">
+
+        <section>
+            <div>
+                <h2><%- data.artObject.title %></h2>
+                <p> Kunstenaar: <%- data.artObject.principalMaker %></p>
+            </div>
+                <h3>Description:</h3>
+                <p><%- data.artObject.description %></p>
+
+                <div>
+                    <p>Type:</p>
+                    <p><%- data.artObject.objectTypes %></p>
+                </div>
+
+                <div>
+                    <p>Techniques:</p>
+                    <p><%- data.artObject.techniques %></p>
+                </div>
+                <div>
+                    <p>Kunst id: </p>
+                    <p> <%- data.artObject.id %></p>
+                </div>
+                <div>
+                    <p>Materials:</p>
+                    <p> <%- data.artObject.material %></p>
+                </div>
+                <div>
+                    <p>PresentingDate:</p>
+                    <p><%- data.artObject.dating.presentingDate %></p>
+                </div>
+    
+                <div>
+                    <p>ProductionPlaces:</p>
+                    <p><%- data.artObject.dating.productionPlaces %></p>
+                </div>
+
+        </section>
+
+    </article>
+
+
+
+        <!-- data bage -->
+        <% if (dataDetail) { %>
+            <%- include("./partials/objectdata.ejs", {data: dataDetail} ) -%>
+        <% } %>

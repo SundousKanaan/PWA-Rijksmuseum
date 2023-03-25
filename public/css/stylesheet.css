@@ -37,6 +37,9 @@ html {
     --transparant-linear-gradient: rgba(0, 0, 1, 0.9) 40%, transparent 100%;
 }
 
+html{
+    background-color: blueviolet;
+}
 
 *:focus,
 li:has(a:focus){
@@ -126,7 +129,7 @@ body>div {
 
     background-image: linear-gradient(var(--linear-gradient));
 
-    display: none;
+    display: grid;
 }
 
 
@@ -417,6 +420,10 @@ main {
     position: relative;
 
     background-image: linear-gradient(var(--linear-gradient));
+}
+
+main.hidden{
+    display: none;
 }
 
 main::after {
@@ -806,17 +813,21 @@ article {
 
     background-image: linear-gradient(var(--linear-gradient));
 
-    display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 3.5em 40vh 30em auto;
 
-    display: none;
+    display: grid;
+}
+
+article.opendetails{
+    display: grid;
 }
 
 article a:first-of-type:hover {
     background-size: 85%;
 }
 
+article button,
 article a{
     width: var(--button-width);
     height: var(--button-width);
@@ -828,36 +839,45 @@ article a{
     margin: 1em 1.5em;
 
     background-position: center;
-    background-size: 75%;
+    background-size: 60%;
+
     background-repeat: no-repeat;
 
     transition: .4s;
+    cursor: pointer;
 }
 
-article a:nth-of-type(2){
+article button:first-of-type{
+    width: calc(var(--button-width) + .5em );
+    height: calc(var(--button-width) + .5em );
+
     background-image: url(https://cdn-icons-png.flaticon.com/512/2989/2989868.png);
     justify-self: end;
 }
 
-article a:first-of-type{
+article a{
     background-image: url(https://cdn-icons-png.flaticon.com/512/1174/1174407.png);
     justify-self: start;
     margin: 1em 1em;
 }
 
-article a:nth-of-type(3){
+
+article button:nth-of-type(2){
+    width: calc(var(--button-width) + .5em );
+    height: calc(var(--button-width) + .5em );
     background-image: url(https://cdn-icons-png.flaticon.com/512/44/44707.png?w=360);
-    background-size: 85%;
+    /* background-size: 85%; */
     display: none;
     justify-self: end;
 }
 
+article button:hover,
 article a:hover{
-    background-size: 85%;
+    background-size: 80%;
 }
 
-article a:nth-of-type(3):hover{
-    background-size: 60%;
+article button:nth-of-type(2):hover{
+    background-size: 70%;
 }
 
 article img {
@@ -875,7 +895,7 @@ article img {
     grid-area: 1/1/4/-1;
 }
 
-article:has(a:nth-of-type(2):hover) img {
+article:has(button:first-of-type:hover) img {
     transform: scale(1.1);
 }
 
@@ -883,12 +903,13 @@ article.openimg section {
     display: none;
 }
 
-article.openimg a:nth-of-type(3) {
+article.openimg button:nth-of-type(2) {
     display: block;
     z-index: 100;
 }
 
-article.openimg a:not(:nth-of-type(3)){
+article.openimg a,
+article.openimg button:first-of-type{
     display: none;
 }
 

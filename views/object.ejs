@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("./partials/head.ejs") -%>
+
+    <body>
+        <article>
+            <a href="/#zoekbalk"></a>
+            <!-- open img  -->
+            <button></button>
+            <!-- close img  -->
+            <button></button>
+
+            <img src="<%- data.artObject.webImage.url %>" alt="<%- data.artObject.longTitle %>">
+
+            <section>
+                <div>
+                    <h2><%- data.artObject.title %></h2>
+                    <p> Kunstenaar: <%- data.artObject.principalMaker %></p>
+                </div>
+
+                <h3>Description:</h3>
+                <% if (data.artObject.description === null ) { %>
+                    <p>
+                        Er is momenteel geen beschrijving beschikbaar voor dit werk, informatie zal worden bijgewerkt zodra deze beschikbaar is.
+                    </p>
+                <% } else { %>
+                    <p><%- data.artObject.description %></p>
+                <% } %>
+
+                <div>
+                    <p>Type:</p>
+                    <p><%- data.artObject.objectTypes %></p>
+                </div>
+
+                <div>
+                    <p>Techniques:</p>
+                    <p><%- data.artObject.techniques %></p>
+                </div>
+                <div>
+                    <p>Kunst id: </p>
+                    <p> <%- data.artObject.id %></p>
+                </div>
+                <div>
+                    <p>Materials:</p>
+                    <p> <%- data.artObject.material %></p>
+                </div>
+                <div>
+                    <p>PresentingDate:</p>
+                    <p><%- data.artObject.dating.presentingDate %></p>
+                </div>
+
+                <div>
+                    <p>ProductionPlaces:</p>
+                    <p><%- data.artObject.dating.productionPlaces %></p>
+                </div>
+
+            </section>
+
+        </article>
+
+        <script src="/script/script.js"></script>
+    </body>
+
+</html>

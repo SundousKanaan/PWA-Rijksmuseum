@@ -5,10 +5,10 @@
 // export let toTop = document.querySelector('main>a');
 // export let loadingscherm = document.querySelector("body>div");
 
-// export const API_KEY = 'BI5yOkPW';
+export const API_KEY = 'BI5yOkPW';
 // export var objectNumber = '';
 
-// export const API_URL = `https://www.rijksmuseum.nl/api/nl/collection?&key=${API_KEY}&ps=1000`;
+export const API_URL = `https://www.rijksmuseum.nl/api/nl/collection?&key=${API_KEY}&ps=1000`;
 
 
 

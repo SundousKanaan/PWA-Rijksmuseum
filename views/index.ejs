@@ -4,12 +4,7 @@
 <%- include("./partials/head.ejs") -%>
 
 <body>
-
-    <div>
-        <img src="./images/rijksmuseum.svg" alt="Rijksmuseum logo">
-    </div>
-
-    <%- include("./partials/header.ejs") -%>
+    <%- include("./partials/header.ejs", {data:data} ) -%>
 
     <main id="zoeken_page">
         <form id="zoekbalk">
@@ -22,17 +17,11 @@
 
 
         <!-- zoeken scherm -->
-        <%- include("./partials/zoeken.ejs") -%>
+        <%- include("./partials/zoeken.ejs" , {data: data} ) -%>
 
 
         <!-- top 10 -->
-        <%- include("./partials/toptien.ejs") -%>
-
-
-        <!-- data bage -->
-        <article>
-            <button></button>
-        </article>
+        <%- include("./partials/toptien.ejs", {data:data} ) -%>
     </main>
 
     <script type="text/javascript"> 
