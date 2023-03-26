@@ -7,9 +7,9 @@
     <%- include("./partials/header.ejs", {data:data} ) -%>
 
     <main id="zoeken_page">
-        <form id="zoekbalk">
+        <form id="zoekbalk" action="/" method="get">
             <label>
-                <input type="search" placeholder="Zoeken...">
+                <input type="search" name="search" id="search" placeholder="Zoeken...">
                 <button></button>
             </label>
         </form>
@@ -36,6 +36,7 @@
                     x.innerHTML = "Geolocation is not supported by this browser.";
         
         </script>
+
         <script src="/script/script.js"></script>
     </body>
 </html>
