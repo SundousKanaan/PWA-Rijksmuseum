@@ -6,19 +6,16 @@
 <body>
     <%- include("./partials/header.ejs", {data:data} ) -%>
 
-    <main id="zoeken_page">
-        <form id="zoekbalk" action="/" method="get">
+    <main>
+        <!-- handelInput -->
+        <form id="zoekbalk" action="/zoekResultaten" method="post">
+            
             <label>
-                <input type="search" name="search" id="search" placeholder="Zoeken...">
-                <button></button>
+                <input type="search" name="search" id="search" placeholder="Zoeken..." required>
             </label>
+            <input type="submit" value="">
         </form>
         <p>Type alsjebleeft een ful naam van de kunstenaar, title, type of material</p>
-
-
-        <!-- zoeken scherm -->
-        <%- include("./partials/zoeken.ejs" , {data: data} ) -%>
-
 
         <!-- top 10 -->
         <%- include("./partials/toptien.ejs", {data:data} ) -%>

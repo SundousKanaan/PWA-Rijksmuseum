@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("./partials/head.ejs") -%>
+
+    <body>
+        <main id="zoek-page">
+            <form id="zoekbalk" action="/zoekResultaten" method="post">
+                <label>
+                    <input type="search" name="search" id="search" placeholder="Zoeken...">
+                </label>
+                <input type="submit" value="">
+            </form>
+            <p>Type alsjebleeft een ful naam van de kunstenaar, title, type of material</p>
+
+            <h2>"<%- searchValue %>" Resultaten</h2>
+            <ul>
+                <% if (searchValue === null) { %>
+                    <li>
+                        Geen resultaten
+                    </li>
+             <% } else { %>
+                <% data.forEach( function(data) { %>
+                    <li>
+                        <a href="<%- object %><%- data.objectNumber %>">
+                            <div>
+                                <h3><%- data.title %></h3>
+                            </div>
+                            <img src="<%- data.webImage?.url || 'https://via.placeholder.com/150' %>" alt="<%- data.longTitle %>">
+                        </a>
+                    </li>
+                    <% });} %>
+                
+            </ul>
+
+            <a href="#zoek-page">
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: none;
+                                    stroke: #ffffff;
+                                    stroke-linecap: round;
+                                    stroke-linejoin: round;
+                                    stroke-width: 2px;
+                                }
+                            </style>
+                        </defs>
+                        <title></title>
+                        <g id="chevron-bottom">
+                            <line class="cls-1" x1="16" x2="7" y1="20.5" y2="11.5"></line>
+                            <line class="cls-1" x1="25" x2="16" y1="11.5" y2="20.5"></line>
+                        </g>
+                    </g>
+                </svg>
+            </a>
+        </main>
+    </body>
+
+</html>

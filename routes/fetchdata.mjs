@@ -1,4 +1,3 @@
-// const fetch = require('node-fetch');
 import fetch from 'node-fetch';
 
 
@@ -38,15 +37,11 @@ async function fetchZoekURL(API_URL,zoeken) {
   try {
     const response = await fetch(ALLAPI_URL);
     const data = await response.json();
-    console.log('fetchZoekURL', data);
     return data;
   } catch (error) {
     throw error;
   }
 }
-
-
-// console.log(fetchZoekURL(API_URL, "anoniem"));
 
 export default {
   fetchData,

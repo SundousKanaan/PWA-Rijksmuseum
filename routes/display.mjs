@@ -1,17 +1,16 @@
 
-import express from 'express';
+function loadingstate(req, res) {
+  res.send('loading..');
 
-function longRunningProcess() {
-  console.log('Loading...');
-//   res.render('loading');
-//   res.send("loading");
-body.innerHTML="<p>PPPPPP</p>"
-
-  // simulate a long-running process
   setTimeout(function() {
     console.log('Process completed!');
   }, 5000);
 }
 
+function errorstate(err, req, res) {
+  res.status(500).send('Error!');
+}
 
-export {longRunningProcess} ;
+export default
+  loadingstate
+  ;
