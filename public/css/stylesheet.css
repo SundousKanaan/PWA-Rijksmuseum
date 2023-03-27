@@ -23,7 +23,7 @@ html {
     --schadow: rgba(236, 236, 236, 80%);
     --white-schadow: rgba(226, 226, 226, 0.219);
 
-    
+
     --input-text: rgb(49, 49, 49);
     --details-background: transparent, rgba(0, 0, 0, 0.664) 20%, black 60%;
     --titel-background: rgba(0, 0, 0, 0.591);
@@ -38,12 +38,8 @@ html {
     --transparant-linear-gradient: rgba(0, 0, 1, 0.9) 40%, transparent 100%;
 }
 
-html{
-    background-color: blueviolet;
-}
-
 *:focus,
-li:has(a:focus){
+li:has(a:focus) {
     outline-color: var(--thema-fontcolor);
     box-shadow: 0 0 0 .2em var(--thema-fontcolor);
 }
@@ -425,7 +421,7 @@ main {
     background-image: linear-gradient(var(--linear-gradient));
 }
 
-main.hidden{
+main.hidden {
     display: none;
 }
 
@@ -447,17 +443,42 @@ main form {
     position: relative;
 
     scroll-margin-top: 2em;
+
+    display: flex;
+    justify-content: space-between;
 }
 
+main form>a {
+    width: var(--button-width);
+    height: var(--button-width);
+
+    border-radius: 50%;
+
+    background-color: var(--white-schadow);
+    background-image: url(https://cdn-icons-png.flaticon.com/512/1174/1174407.png);
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+}
+
+main form>a:hover {
+    background-size: 80%;
+}
+
+
 main form label {
-    width: 100%;
+    width: 90%;
     height: 2.5em;
     position: relative;
 }
 
+main:not(form>a) form label{
+    width: 100%;
+}
+
 
 main form label input[type=search] {
-    width: inherit;
+    width: 100%;
     height: 100%;
 
     border: none;
@@ -486,7 +507,7 @@ main form label input[type=search]::-webkit-search-cancel-button {
     cursor: pointer;
 }
 
-main form > input[type=submit] {
+main form input[type=submit] {
     appearance: none;
 
     width: var(--button-width);
@@ -520,7 +541,7 @@ main>p {
 
 }
 
-main>a{
+main>a {
     width: var(--button-width);
     height: var(--button-width);
     border-radius: 50%;
@@ -532,10 +553,9 @@ main>a{
     right: 2em;
 
     z-index: 1000;
-    /* display: block; */
 }
 
-main>a svg{
+main>a svg {
     transform: rotate(180deg);
 }
 
@@ -704,13 +724,12 @@ main ul li a img {
 main>section:first-of-type {
     width: 100vw;
     height: fit-content;
-    /* overflow: hidden; */
     padding-left: 1em;
     position: relative;
     margin-top: 1em;
 }
 
-@media (min-width: 1000px){
+@media (min-width: 1000px) {
     main>section:first-of-type {
         width: 75vw;
         justify-self: center;
@@ -737,23 +756,13 @@ main>section:first-of-type h2 {
 }
 
 main>section:first-of-type ul {
-    height: 12em;
     list-style: none;
-
 
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
     gap: 1em;
-
-
-    overflow-x: scroll;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    overscroll-behavior: none;
-
-    background-image: linear-gradient(to right, transparent 80% , var(--white-schadow));
 }
 
 main>section:first-of-type ul::-webkit-scrollbar {
@@ -825,7 +834,7 @@ article {
     display: grid;
 }
 
-article.opendetails{
+article.opendetails {
     display: grid;
 }
 
@@ -834,7 +843,7 @@ article a:first-of-type:hover {
 }
 
 article button,
-article a{
+article a {
     width: var(--button-width);
     height: var(--button-width);
     background-color: var(--white-schadow);
@@ -846,31 +855,30 @@ article a{
 
     background-position: center;
     background-size: 60%;
-
     background-repeat: no-repeat;
 
     transition: .4s;
     cursor: pointer;
 }
 
-article button:first-of-type{
-    width: calc(var(--button-width) + .5em );
-    height: calc(var(--button-width) + .5em );
+article button:first-of-type {
+    width: calc(var(--button-width) + .5em);
+    height: calc(var(--button-width) + .5em);
 
     background-image: url(https://cdn-icons-png.flaticon.com/512/2989/2989868.png);
     justify-self: end;
 }
 
-article a{
+article a {
     background-image: url(https://cdn-icons-png.flaticon.com/512/1174/1174407.png);
     justify-self: start;
     margin: 1em 1em;
 }
 
 
-article button:nth-of-type(2){
-    width: calc(var(--button-width) + .5em );
-    height: calc(var(--button-width) + .5em );
+article button:nth-of-type(2) {
+    width: calc(var(--button-width) + .5em);
+    height: calc(var(--button-width) + .5em);
     background-image: url(https://cdn-icons-png.flaticon.com/512/44/44707.png?w=360);
     /* background-size: 85%; */
     display: none;
@@ -878,11 +886,11 @@ article button:nth-of-type(2){
 }
 
 article button:hover,
-article a:hover{
+article a:hover {
     background-size: 80%;
 }
 
-article button:nth-of-type(2):hover{
+article button:nth-of-type(2):hover {
     background-size: 70%;
 }
 
@@ -915,20 +923,20 @@ article.openimg button:nth-of-type(2) {
 }
 
 article.openimg a,
-article.openimg button:first-of-type{
+article.openimg button:first-of-type {
     display: none;
 }
 
-article.openimg a:first-of-type:hover{
+article.openimg a:first-of-type:hover {
     background-size: 65%;
 }
 
-article a:first-of-type + img {
+article a:first-of-type+img {
     transform: scale(1);
 }
 
-article.openimg{
- justify-content: center
+article.openimg {
+    justify-content: center
 }
 
 
@@ -1020,7 +1028,7 @@ article>section>p {
     }
 }
 
-article>section>p:first-of-type{
+article>section>p:first-of-type {
     padding-bottom: 1em;
     border-bottom: solid .2em var(--fontcolor);
 }
@@ -1034,7 +1042,7 @@ article>section>p:first-of-type::first-letter {
     float: left;
 }
 
-article>section> div:not(:first-of-type){
+article>section>div:not(:first-of-type) {
     display: flex;
     flex-direction: row;
 
@@ -1042,7 +1050,7 @@ article>section> div:not(:first-of-type){
     gap: 1em;
 }
 
-article>section>div p:first-of-type{
+article>section>div p:first-of-type {
     color: var(--thema-fontcolor);
 }
 

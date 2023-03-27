@@ -6,14 +6,13 @@
 <body>
     <%- include("./partials/header.ejs", {data:data} ) -%>
 
-    <main>
+    <main >
         <!-- handelInput -->
         <form id="zoekbalk" action="/zoekResultaten" method="post">
-            
             <label>
                 <input type="search" name="search" id="search" placeholder="Zoeken..." required>
+                <input type="submit" value="">
             </label>
-            <input type="submit" value="">
         </form>
         <p>Type alsjebleeft een ful naam van de kunstenaar, title, type of material</p>
 
@@ -34,6 +33,6 @@
         
         </script>
 
-        <script src="/script/script.js"></script>
+        <script src="../../script/script.js"></script>
     </body>
 </html>

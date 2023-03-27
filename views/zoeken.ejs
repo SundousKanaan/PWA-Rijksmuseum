@@ -6,31 +6,33 @@
     <body>
         <main id="zoek-page">
             <form id="zoekbalk" action="/zoekResultaten" method="post">
+                <a href="/#zoekbalk"></a>
                 <label>
                     <input type="search" name="search" id="search" placeholder="Zoeken...">
+                    <input type="submit" value="">
                 </label>
-                <input type="submit" value="">
             </form>
             <p>Type alsjebleeft een ful naam van de kunstenaar, title, type of material</p>
 
             <h2>"<%- searchValue %>" Resultaten</h2>
             <ul>
-                <% if (searchValue === null) { %>
+                <% if (searchValue===null) { %>
                     <li>
                         Geen resultaten
                     </li>
-             <% } else { %>
-                <% data.forEach( function(data) { %>
-                    <li>
-                        <a href="<%- object %><%- data.objectNumber %>">
-                            <div>
-                                <h3><%- data.title %></h3>
-                            </div>
-                            <img src="<%- data.webImage?.url || 'https://via.placeholder.com/150' %>" alt="<%- data.longTitle %>">
-                        </a>
-                    </li>
-                    <% });} %>
-                
+                    <% } else { %>
+                        <% data.forEach( function(data) { %>
+                            <li>
+                                <a href="<%- object %><%- data.objectNumber %>">
+                                    <div>
+                                        <h3><%- data.title %></h3>
+                                    </div>
+                                    <img src="<%- data.webImage?.url || 'https://via.placeholder.com/150' %>"
+                                        alt="<%- data.longTitle %>">
+                                </a>
+                            </li>
+                        <% });
+                    } %>
             </ul>
 
             <a href="#zoek-page">
