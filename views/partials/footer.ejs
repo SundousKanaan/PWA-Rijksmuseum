@@ -1,0 +1,13 @@
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('../../serviceWworker.js')
+        .then((registration) => {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          return registration.update();
+        })
+    });
+  }
+</script>
+
+<script src="../../script/script.js"></script>

@@ -22,7 +22,6 @@ router.get('/', async (req, res) => {
   }
 })
 
-
 router.get('/object/:objectNumber', async (req, res) => {
   const objectNumber = req.params.objectNumber
   try {
