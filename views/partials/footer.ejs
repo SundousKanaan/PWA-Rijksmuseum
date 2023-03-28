@@ -7,10 +7,11 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/serviceWorker.js')
       .then((registration) => {
         // Als de registratie succesvol is, log dan het bereik van de servicewerker in de console
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        console.log('ServiceWorker registration successful with scope: ', registration);
         // Forceer een update van de servicewerker
         return registration.update();
       })
+      .catch((err) => console.log('ServiceWorker not registration', err));
   });
 }
 

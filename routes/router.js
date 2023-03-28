@@ -22,6 +22,16 @@ router.get('/', async (req, res) => {
   }
 })
 
+// offline page page
+router.get('/offline', async (req, res) => {
+  console.log("Hi offline");
+  try {
+    res.render('offline');
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+})
+
 router.get('/object/:objectNumber', async (req, res) => {
   const objectNumber = req.params.objectNumber
   try {
