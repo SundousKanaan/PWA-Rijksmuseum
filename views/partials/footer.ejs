@@ -1,13 +1,19 @@
 <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('../../serviceWworker.js')
-        .then((registration) => {
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-          return registration.update();
-        })
-    });
-  }
+// Controleer of de servicewerker wordt ondersteund door de browser
+if ('serviceWorker' in navigator) {
+  // Wacht tot het venster volledig is geladen voordat u de servicewerker registreert
+  window.addEventListener('load', () => {
+    // Registreer de servicewerker door de URL naar het servicewerker-bestand te specificeren
+    navigator.serviceWorker.register('/serviceWorker.js')
+      .then((registration) => {
+        // Als de registratie succesvol is, log dan het bereik van de servicewerker in de console
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        // Forceer een update van de servicewerker
+        return registration.update();
+      })
+  });
+}
+
 </script>
 
-<script src="../../script/script.js"></script>
+<script src="/script/script.js"></script>
