@@ -20,10 +20,10 @@ app.set('views', 'views')
 // Configureer de 'ejs' module als de view engine voor de app
 app.set('view engine', 'ejs');
 
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 // app.use(express.static(__dirname + 'public')); // Hier zit bijvoorbeeld css in
 
-app.use('/', express.static(__dirname + '/'));
+// app.use('/', express.static(__dirname + '/'));
 
 app.use('/', router);
 

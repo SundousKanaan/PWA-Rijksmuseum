@@ -32,22 +32,6 @@ router.get('/offline', async (req, res) => {
   }
 })
 
-router.get('/object/:objectNumber', async (req, res) => {
-  const objectNumber = req.params.objectNumber
-  try {
-    // const data = await fetch.fetchData( API_URL, API_KEY);
-    const dataDetail = await fetch.fetchObjectDetails(objectNumber);
-    // res.json(dataDetail);
-    // res.send(dataDetail.artObject.title)
-    res.render('object', { data: dataDetail, object: "/object/" });
-    console.log(data.artObject.techniques);
-
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
-});
-
-
 router.get('/zoekResultaten', async (req, res) => {
   res.render('zoeken');
 })
@@ -115,6 +99,21 @@ router.post('/zoekResultaten', async (req, res) => {
   } catch (error) {
     res.status(500).send(error.message);
   }
-})
+});
+
+router.get('/object/:objectNumber', async (req, res) => {
+  const objectNumber = req.params.objectNumber
+  try {
+    // const data = await fetch.fetchData( API_URL, API_KEY);
+    const dataDetail = await fetch.fetchObjectDetails(objectNumber);
+    // res.json(dataDetail);
+    // res.send(dataDetail.artObject.tit.le)
+    res.render('object', { data: dataDetail, object: "/object/" });
+    console.log(data.artObject.techniques);
+
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
 
 export default router;
