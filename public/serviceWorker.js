@@ -1,80 +1,84 @@
-const CORE_CACHE_NAME = 'cache-v3';
-// const RUNTIME_CACHE_NAME = 'runtime-cache';
-const CORE_ASSETS = [
-  '/',
-  // '/object/:objectNumber',
-  '/offline.ejs',
-  '/css/stylesheet.css',
-  '/script/script.js'
+const cacheName = 'v1';
+const cacheAssests = [
+    '/',
+    '/offline',
+    '/css/stylesheet.css',
+    '/script/script.js',
+    '/images/rijksmuseum.svg'
 ]
 
-// Voeg een eventlistener toe voor het 'install' event van de servicewerker
-self.addEventListener("install", (event) => {
-  console.log('install')
-  // Gebruik event.waitUntil om ervoor te zorgen dat de servicewerker blijft wachten tot de cache is opgeslagen
-  event.waitUntil(
-    // Open de cache met de opgegeven cache-naam en voeg de opgegeven assets toe aan de cache
-    caches.open(CORE_CACHE_NAME)
-      .then(cache => cache.addAll(CORE_ASSETS))
-    // Zodra alle assets zijn toegevoegd aan de cache, activeer de servicewerker
-    .then(() => self.skipWaiting())
-  );
+// Call install event
+// Put everything in the cache
+self.addEventListener('install', e => {
+    console.log('service worker: installed');
+
+    e.waitUntil(
+        caches
+            .open(cacheName)
+            .then(cache => {
+                console.log('service worker: cashing files');
+                cache.addAll(cacheAssests);
+            })
+            .then(() => self.skipWaiting())
+    );
 });
 
-// Voeg een eventlistener toe voor het 'activate' event van de servicewerker
-self.addEventListener('activate', (event) => {
-  console.log('acitvate')
-  // Gebruik event.waitUntil om ervoor te zorgen dat de servicewerker blijft wachten tot alle caches zijn opgeruimd
-  event.waitUntil(
-    caches.keys()
-      .then(cacheNames => {
-        // Maak een array van alle promises om alle caches op te ruimen
-        return Promise.all(
-          cacheNames.map(cacheName => {
-            // Als de cache-naam niet de CORE_CACHE_NAME of de RUNTIME_CACHE_NAME is, verwijder deze dan uit de cache
-            if (cacheName !== CORE_CACHE_NAME && cacheName !== RUNTIME_CACHE_NAME) {
-              return caches.delete(cacheName);
+
+// Call activate event
+// Delete the old cache versies
+self.addEventListener('activate', e => {
+    console.log('service worker: activated');
+
+    // Remove the old caches
+    e.waitUntil(
+        caches.keys()
+            .then(cacheNames => {
+                return Promise.all(
+                    cacheNames.map(cache => {
+                        if (cache !== cacheName) {
+                            console.log('service worker: clearing old cache');
+                            return caches.delete(cache);
+                        }
+                    })
+                );
+            })
+    );
+});
+
+// Call fetch event
+self.addEventListener('fetch', e => {
+    console.log('service worker: fetching');
+    e.respondWith(
+        // fetch(e.request).catch(() => caches.match(e.request))
+        caches.match(e.request).then(response => {
+            if (response) {
+                // If the response is already cached, return it
+                return response;
             }
-          })
-        )
-      })
-  )
-})
+            // If the request is for a specific object objectNumber, cache the response
+            if (e.request.url.includes('/object/')) {
+                return caches.open(cacheName).then(cache => {
+                    return fetch(e.request).then(response => {
+                        cache.put(e.request, response.clone());
+                        return response;
+                    });
+                });
+            }
 
-// This code adds a fetch event listener to the service worker.
-self.addEventListener('fetch', (event) => {
+            if (e.request.url.includes('/zoekResultaten')) {
+                return caches.open(cacheName).then(cache => {
+                    return fetch(e.request).then(response => {
+                        cache.put(e.request, response.clone());
+                        return response;
+                    });
+                });
+            }
 
-  // Extracts the path from the requested URL
-  const path = new URL(event.request.url).pathname
-
-  // Checks if the request header includes 'text/html'
-  if (event.request.headers.get('accept').includes('text/html')) {
-    // If yes, it responds with a cache match or a fetch response and caches the response
-    event.respondWith(
-      caches.open(RUNTIME_CACHE_NAME)
-        .then(cache => cache.match(event.request))
-        .then(response => response || fetchAndCache(event.request))
-        .catch(() => caches.open(CORE_CACHE_NAME)
-          .then(cache => cache.match('/offline')))
+            // If the request is not for a specific object ID, fetch from the network
+            return fetch(e.request).catch(() => {
+                // If the network request fails, return the offline page
+                return caches.match('/offline');
+            });
+        })
     )
-    // If the requested path is in the list of core assets
-  } else if (CORE_ASSETS.includes(path)) {
-    // Responds with a cache match
-    event.respondWith(
-      caches.open(CORE_CACHE_NAME)
-        .then(cache => cache.match(path))
-    )
-  }
 })
-
-
-// This function fetches a request and caches the response for future use
-function fetchAndCache(request) {
-  return fetch(request) // Fetch the request from the network
-    .then(response => {
-      const clone = response.clone() // Clone the response to prevent it from being consumed
-      caches.open(RUNTIME_CACHE_NAME) // Open the runtime cache
-        .then(cache => cache.put(request, clone)) // Cache the response
-      return response // Return the original response to the caller
-    })
-}

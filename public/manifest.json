@@ -1,6 +1,7 @@
 {
     "name": "Rijksmuseum",
     "short_name": "Rijksmuseum",
+    "description": "This is a one-page application built using the open API of the Rijksmuseum. Users can search for art works and the application displays the search results along with relevant information about the art works. can work online and offline.",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#fffbf7",
