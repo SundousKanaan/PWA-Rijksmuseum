@@ -63,22 +63,11 @@ self.addEventListener('fetch', e => {
                         return response;
                     });
                 });
-            }
-
-            if (e.request.url.includes('/zoekResultaten')) {
-                return caches.open(cacheName).then(cache => {
-                    return fetch(e.request).then(response => {
-                        cache.put(e.request, response.clone());
-                        return response;
-                    });
-                });
-            }
-
-            // If the request is not for a specific object ID, fetch from the network
-            return fetch(e.request).catch(() => {
-                // If the network request fails, return the offline page
+            } else {
                 return caches.match('/offline');
-            });
+            }
         })
     )
+    console.log('service worker: fetching finished');
+
 })

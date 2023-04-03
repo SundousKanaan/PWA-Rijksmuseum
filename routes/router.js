@@ -37,8 +37,8 @@ router.get('/zoekResultaten', async (req, res) => {
 })
 
 router.post('/zoekResultaten', async (req, res) => {
+  console.log("Start the search fetch");
   const data = await fetch.fetchData(API_URL, API_KEY);
-  console.log("klaar met fetch 1");
   const AllMakersArray = data.artObjects.map(artObject => artObject.principalOrFirstMaker);
   const AllTitlesArray = data.artObjects.map(artObject => artObject.title)
   const AllobjectsNummbers = data.artObjects.map(artObject => artObject.objectNumber)
@@ -64,11 +64,14 @@ router.post('/zoekResultaten', async (req, res) => {
   const searchValue = req.body.search;
   let zoeken = '';
 
+  console.log("klaar met fetch 1");
+
   if (MakersArray.includes(searchValue)) {
     zoeken = 'involvedMaker=' + searchValue;
     const searchData = await fetch.fetchZoekURL(API_URL, zoeken);
     console.log("klaar met fetch 2");
-    res.render('zoeken', { data: searchData.artObjects, searchValue: searchValue, object: "/object/" });
+    console.log("LOOL", searchData.artObjects.webImage.url);
+    // res.render('zoeken', { data: searchData.artObjects, searchValue: searchValue, object: "/object/" });
 
   }
   else if (TitlesArray.includes(searchValue)) {
@@ -91,7 +94,6 @@ router.post('/zoekResultaten', async (req, res) => {
     res.render('zoeken', { data: searchData.artObjects, searchValue: searchValue, object: "/object/" });
   }
   else {
-    console.log("noooooo");
     searchValue = null;
     res.render('zoeken', { searchValue: searchValue });
   }

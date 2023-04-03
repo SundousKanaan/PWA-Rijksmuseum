@@ -936,7 +936,7 @@ article a:first-of-type+img {
 }
 
 article.openimg {
-    justify-content: center
+    justify-content: center;
 }
 
 
