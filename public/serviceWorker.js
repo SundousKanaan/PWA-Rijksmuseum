@@ -49,25 +49,22 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
     console.log('service worker: fetching');
     e.respondWith(
-        // fetch(e.request).catch(() => caches.match(e.request))
         caches.match(e.request).then(response => {
             if (response) {
                 // If the response is already cached, return it
                 return response;
             }
-            // If the request is for a specific object objectNumber, cache the response
-            if (e.request.url.includes('/object/')) {
+                            // If the request is for a specific object objectNumber, cache the response
+            else if (e.request.url.includes('/object/')) {
                 return caches.open(cacheName).then(cache => {
                     return fetch(e.request).then(response => {
                         cache.put(e.request, response.clone());
                         return response;
-                    });
-                });
-            } else {
-                return caches.match('/offline');
+                    })
+                    .catch(() => caches.open(cacheName)).then(caches => caches.match('/offline'))
+                })
             }
         })
     )
     console.log('service worker: fetching finished');
-
 })

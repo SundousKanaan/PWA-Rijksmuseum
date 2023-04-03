@@ -28,7 +28,7 @@ app.set('view engine', 'ejs');
 app.use('/', router);
 
 
-const port = 5500;
+const port = 5000;
 app.listen(port, () => console.log(`Server listening on port ${port}`));
 
 

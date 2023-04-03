@@ -104,16 +104,17 @@ router.post('/zoekResultaten', async (req, res) => {
 });
 
 router.get('/object/:objectNumber', async (req, res) => {
+  console.log('ik kom hier')
+
   const objectNumber = req.params.objectNumber
   try {
-    // const data = await fetch.fetchData( API_URL, API_KEY);
     const dataDetail = await fetch.fetchObjectDetails(objectNumber);
-    // res.json(dataDetail);
-    // res.send(dataDetail.artObject.tit.le)
+    console.log('eerste test', dataDetail)
     res.render('object', { data: dataDetail, object: "/object/" });
-    console.log(data.artObject.techniques);
+    // console.log(data.artObject.techniques);
 
   } catch (error) {
+    console.log('tweede test')
     res.status(500).send(error.message);
   }
 });

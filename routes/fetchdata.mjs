@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 
 export const API_KEY = 'BI5yOkPW';
-export const API_URL = `https://www.rijksmuseum.nl/api/nl/collection?&key=${API_KEY}&ps=1000`;
+export const API_URL = `https://www.rijksmuseum.nl/api/nl/collection?&key=${API_KEY}&ps=12`;
 
 const fetchData = async (API_URL, API_KEY) => {
   try {
@@ -19,7 +19,8 @@ const fetchData = async (API_URL, API_KEY) => {
 
 async function fetchObjectDetails(objectNumber) { 
   try{
-    const objectDetails_URL = `https://www.rijksmuseum.nl/api/nl/collection/${objectNumber}?&key=${API_KEY}&ps=1000`;
+    const objectDetails_URL = `https://www.rijksmuseum.nl/api/nl/collection/${objectNumber}?&key=${API_KEY}`;
+    console.log(objectDetails_URL);
     const res = await fetch(objectDetails_URL)
     const data = res.json()
     return data
