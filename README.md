@@ -10,7 +10,6 @@ This specific application is the server-side version of [Rijksmuseum](https://gi
 - [live demo](https://pwa-rijksmuseum-production.up.railway.app/)
 
 ##  Technologies used
-
     - Node.js
     - Express
     - ejs
