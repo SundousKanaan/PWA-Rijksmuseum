@@ -50,8 +50,6 @@ npm install
 npm start
 ```
 
-
-
 ## How does one use this project? What are its features?
 
 ## client- server rendering choices
