@@ -2,18 +2,21 @@
 
 'Rijksmuseum' is a Single Page Application that let's you explore the Rijksmuseum collection. You can search for artworks, artists and get more information about them.
 
-This specific application is the server-side version of [live demo](#synopsis)
+This specific application is the server-side version of [Rijksmuseum](https://github.com/SundousKanaan/Rijksmuseum)
 
  <img src="./readmeImages/homescreen.png" alt="screen shot for the home page of the app.">
 
 
-- [live demo](#synopsis)
+- [live demo](https://pwa-rijksmuseum-production.up.railway.app/)
 
-| Time | Who | Activity |
-|:--|:--|:--|
-| 13.00 | Tribe *+(Declan, Janno)* | Peer review |
-| 15.30 | Tribe *+(Declan, Janno)* | Finalize your assignment |
-| 16.00 | Tribe *+(Declan, Janno)* | (drinks?!) |
+##  Technologies used
+
+    - Node.js
+    - Express
+    - ejs
+    - css
+    - JavaScript
+    - [Rijksmuseum API](https://www.rijksmuseum.nl/nl/onderzoek/onderzoek-doen/data)
 
 
 <!-- Here are some hints for your project! -->
