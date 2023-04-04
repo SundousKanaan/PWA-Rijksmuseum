@@ -30,7 +30,7 @@
     <ul>
         <% data.artObjects.slice(0, 5).forEach(top5ArtObject => { %>
          <li>
-            <img src="<%- top5ArtObject.webImage.url %>" alt="<%- top5ArtObject.longTitle %>" width="3em" height="5em" />
+            <img src="<%- top5ArtObject.webImage.url.slice(0, -3) + '=s1000' %>" alt="<%- top5ArtObject.longTitle %>" loading="lazy" width=".5em" height="1.5em" />
          </li>
         <% }) %>
     </ul>

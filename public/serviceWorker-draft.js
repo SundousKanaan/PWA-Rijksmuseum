@@ -1,5 +1,5 @@
 const CORE_CACHE_NAME = 'cache-v3';
-// const RUNTIME_CACHE_NAME = 'runtime-cache';
+const RUNTIME_CACHE_NAME = 'runtime-cache';
 const CORE_ASSETS = [
   '/offline',
   '/css/stylesheet.css',
@@ -77,3 +77,30 @@ function fetchAndCache(request) {
       return response // Return the original response to the caller
     })
 }
+
+
+
+// *****************************************************************
+// *****************************************************************
+
+self.addEventListener('fetch', e => {
+    console.log('service worker: fetching');
+    e.respondWith(
+        caches.match(e.request).then(response => {
+            if (response) {
+                // If the response is already cached, return it
+                return response;
+            } else if (e.request.url.includes('/object/')) {
+                // If the request is for a specific object objectNumber, cache the response
+                return caches.open(cacheName).then(cache => {
+                    return fetch(e.request).then(response => {
+                        cache.put(e.request, response.clone());
+                        return response;
+                    })
+                        .catch(() => caches.open(cacheName)).then(caches => caches.match('/offline'))
+                })
+            }
+        })
+    )
+    console.log('service worker: fetching finished');
+})

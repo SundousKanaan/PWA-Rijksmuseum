@@ -4,7 +4,8 @@ const cacheAssests = [
     '/offline',
     '/css/stylesheet.css',
     '/script/script.js',
-    '/images/rijksmuseum.svg'
+    '/images/rijksmuseum.svg',
+    '/images/offline.svg'
 ]
 
 // Call install event
@@ -45,26 +46,35 @@ self.addEventListener('activate', e => {
     );
 });
 
-// Call fetch event
+// // Call fetch event
 self.addEventListener('fetch', e => {
-    console.log('service worker: fetching');
-    e.respondWith(
-        caches.match(e.request).then(response => {
-            if (response) {
-                // If the response is already cached, return it
-                return response;
-            }
-                            // If the request is for a specific object objectNumber, cache the response
-            else if (e.request.url.includes('/object/')) {
-                return caches.open(cacheName).then(cache => {
-                    return fetch(e.request).then(response => {
-                        cache.put(e.request, response.clone());
-                        return response;
-                    })
-                    .catch(() => caches.open(cacheName)).then(caches => caches.match('/offline'))
-                })
-            }
-        })
-    )
-    console.log('service worker: fetching finished');
+    const path = new URL(e.request.url).pathname
+
+
+    if (e.request.headers.get('accept').includes('text/html')) {
+        e.respondWith(
+            caches.open(cacheName)
+                .then(cache => cache.match(e.request))
+                .then(response => response || fetchAndCache(e.request))
+                .catch(() => caches.open(cacheName)
+                    .then(cache => cache.match('/offline')))
+        )
+    } else if (cacheAssests.includes(path)) {
+        // Responds with a cache match
+        e.respondWith(
+            caches.open(cacheName)
+                .then(cache => cache.match(path))
+        )
+    }
 })
+
+// This function fetches a request and caches the response for new url
+function fetchAndCache(request) {
+    return fetch(request) // Fetch the request from the network
+        .then(response => {
+            const clone = response.clone() // Clone the response to prevent it from being consumed
+            caches.open(cacheName) // Open the cache
+                .then(cache => cache.put(request, clone)) // Cache the response
+            return response // Return the original response
+        })
+}

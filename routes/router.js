@@ -24,7 +24,6 @@ router.get('/', async (req, res) => {
 
 // offline page page
 router.get('/offline', async (req, res) => {
-  console.log("Hi offline");
   try {
     res.render('offline');
   } catch (error) {
@@ -109,7 +108,7 @@ router.get('/object/:objectNumber', async (req, res) => {
   const objectNumber = req.params.objectNumber
   try {
     const dataDetail = await fetch.fetchObjectDetails(objectNumber);
-    console.log('eerste test', dataDetail)
+    console.log('eerste test')
     res.render('object', { data: dataDetail, object: "/object/" });
     // console.log(data.artObject.techniques);
 

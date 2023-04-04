@@ -225,6 +225,7 @@ header {
 
 header h1 {
     width: 80%;
+    height: fit-content;
 
     grid-area: 1/1/2/2;
     align-self: end;
@@ -247,6 +248,7 @@ header>p {
 header h1 img {
     display: block;
     width: 100%;
+    height: 5vw;
 
     filter: var(--titel-filter);
 }
@@ -756,13 +758,23 @@ main>section:first-of-type h2 {
 }
 
 main>section:first-of-type ul {
+    height: 12em;
     list-style: none;
+
 
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-wrap: nowrap;
+    align-items: center;
     gap: 1em;
+
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior: none;
+
+    background-image: linear-gradient(to right, transparent 80% , var(--white-schadow));
 }
 
 main>section:first-of-type ul::-webkit-scrollbar {
