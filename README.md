@@ -9,13 +9,30 @@ This specific application is the server-side version of [Rijksmuseum](https://gi
 
 - [live demo](https://pwa-rijksmuseum-production.up.railway.app/)
 
-##  Technologies used
+## Technologies used
 - Node.js
 - Express
 - ejs
 - css
 - JavaScript
 - [Rijksmuseum API](https://www.rijksmuseum.nl/nl/onderzoek/onderzoek-doen/data)
+
+## How to install this project? 
+
+
+## How does one use this project? What are its features?
+
+## client- server rendering choices
+
+## Activity diagram
+
+## Enhancements
+
+## Checklist
+
+## Sources
+
+### I did this project for my third year school project.
 
 
 <!-- Here are some hints for your project! -->
