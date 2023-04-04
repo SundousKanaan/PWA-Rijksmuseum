@@ -20,13 +20,37 @@ This specific application is the server-side version of [Rijksmuseum](https://gi
 
 ## How to install this project? 
 
-NPM install
+1. NPM install
 
 In order to set up the server, you'll require node and express. One way to accomplish this is by utilizing nvm, a package installer that enables you to install various packages. The following code can be used to install the most recent versions of npm and node:
 
 ```
 nvm install 19.8.1
 ```
+
+2. Clone repo
+
+To obtain a copy of this repository, execute the following command:
+
+```
+https://github.com/SundousKanaan/PWA-Rijksmuseum.git
+```
+
+3. NPM install
+
+Install the dependencies by running
+
+```
+npm install 
+```
+
+4. Start server
+
+```
+npm start
+```
+
+
 
 ## How does one use this project? What are its features?
 
