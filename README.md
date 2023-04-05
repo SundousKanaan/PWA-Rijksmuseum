@@ -309,7 +309,11 @@ Then i used slice to change the size of the photos.
 
 ## Sources
 
+<<<<<<< HEAD
 -[How HTTP POST request work in Node.js?](https://www.geeksforgeeks.org/how-http-post-request-work-in-node-js/)
+=======
+- [How HTTP POST request work in Node.js?](https://www.geeksforgeeks.org/how-http-post-request-work-in-node-js/)
+>>>>>>> d5b7cc08a3a5075ee2b4522e502f9cb0c05b5382
 - [node-fetch](https://www.npmjs.com/package/node-fetch)
 - [ejs](https://ejs.co/)
 - [Service Worker](https://googlechrome.github.io/samples/service-worker/basic/)
