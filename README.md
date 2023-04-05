@@ -234,10 +234,47 @@ To turn my prototype into a Progressive Web App, I installed a service worker as
 ### What is a service worker?
 Service workers act as a proxy server between the web application, browser, and network (when there is a connection). Their tasks include:
 
-Creating a seamless offline experience.
-Monitoring requests and responses between the server and client.
-Enabling access to push notifications.
+- Creating a seamless offline experience. ✅
+- Monitoring requests and responses between the server and client. ✅
+- Enabling access to push notifications. ❌
 
+#### Staps
+
+1. Creating a service worker file. `serviceWorker.js`
+2. Registering a service worker.
+
+in the end of the body (in my work in the `footer.ejs`)
+This function sends a message to the console confirming that the service worker is registered. I indicate which file is the service worker.
+
+```
+<script>
+  // Controleer of de servicewerker wordt ondersteund door de browser
+  if ('serviceWorker' in navigator) {
+    // Wacht tot het venster volledig is geladen voordat u de servicewerker registreert
+    window.addEventListener('load', () => {
+      // Registreer de servicewerker door de URL naar het servicewerker-bestand te specificeren
+      navigator.serviceWorker.register('/serviceWorker.js')
+        .then((registration) => {
+          // Als de registratie succesvol is, log dan het bereik van de servicewerker in de console
+          console.log('ServiceWorker registration successful with scope: ', registration);
+          // Forceer een update van de servicewerker
+          return registration.update();
+        })
+        .catch((err) => console.log('ServiceWorker not registration', err));
+    });
+  }
+</script>
+```
+
+3. The service worker components
+
+- `cache name variabele` The cache name and vertion in the `Cache Storage`
+- `static files array` Files Array that should automatically work offline
+-  `install event` To push files into the cache
+- `activate event` To clean the previous versions that are in the cache
+- `fetch event` Retrieve data from cache (in the offline)
+
+## Critical rendering path
 
 ## Activity diagram
 
