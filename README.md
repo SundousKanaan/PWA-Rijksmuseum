@@ -60,10 +60,146 @@ To create a server for my application, I utilized the express library which was 
 npm install express
 ```
 
-then i have created a server.js file in which I will construct my server.
+then i have created a `server.js` file in which I will construct my server.
 
 ### Express Import
 
+I imported express using the require() method as the first step.
+
+```
+    // server.js
+const express = require('express');
+const app = express();
+const port = 5000;
+```
+
+I have implemented routing for all the pages of the application, meaning that a page will be rendered if the URL matches. This involves sending a request to retrieve the URL from the server and rendering the page using a templating engine. Below is the structure of a server-side routing.
+
+```
+    // server.js
+app.use('/', router);
+
+```
+
+`express.Router()` i used an instance of an Express router, which can be used to define and organize route handlers for a specific endpoint. 
+
+To implement server-side routing in Express, we use the `app.method(path, handler)`
+
+```
+    // router.js
+const router = express.Router();
+
+// home page
+router.get('/', async (req, res) => {
+  try {
+    const data = await fetch.fetchData(API_URL, API_KEY);
+    res.render('index', { data: data, object: "/object/", dataDetail: undefined });
+    console.log("fetch")
+
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+})
+
+// offline page
+router.get('/offline', async (req, res) => {
+  try {
+    res.render('offline');
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+})
+
+// zoeken page
+router.get('/zoekResultaten', async (req, res) => {
+  res.render('zoeken');
+})
+
+router.post('/zoekResultaten', async (req, res) => {
+  console.log("Start the search fetch");
+  const data = await fetch.fetchData(API_URL, API_KEY);
+  const AllMakersArray = data.artObjects.map(artObject => artObject.principalOrFirstMaker);
+  const AllTitlesArray = data.artObjects.map(artObject => artObject.title)
+  const AllobjectsNummbers = data.artObjects.map(artObject => artObject.objectNumber)
+  let Alltypes = [];
+  let Allmaterials = [];
+
+  try {
+  for (const objectNumber of AllobjectsNummbers) {
+    try {
+      const objectDetails = await fetch.fetchObjectDetails(objectNumber);
+      Alltypes = Alltypes.concat(objectDetails.artObject.objectTypes);
+      Allmaterials = Allmaterials.concat(objectDetails.artObject.materials);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const MakersArray = [...new Set(AllMakersArray)];
+  const TitlesArray = [...new Set(AllTitlesArray)];
+  const typesArray = [...new Set(Alltypes)];
+  const materialsArray = [...new Set(Allmaterials)];
+
+  let searchValue = req.body.search;
+  let zoeken = '';
+
+  console.log("klaar met fetch 1");
+  if (MakersArray.includes(searchValue)) {
+    zoeken = 'involvedMaker=' + searchValue;
+    let searchData = await fetch.fetchZoekURL(API_URL, zoeken);
+    console.log("klaar met fetch 2");
+    let cleanData = searchData.artObjects.filter(item => item.webImage !== null)
+    console.log(cleanData);
+    res.render('zoeken', { data: cleanData, searchValue: searchValue, object: "/object/" });
+  } 
+
+  // else if for "TitlesArray" "typesArray" and "materialsArray"
+
+  else {
+    searchValue = null;
+    res.render('zoeken', { searchValue: searchValue });
+  }
+
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+// object details page
+
+router.get('/object/:objectNumber', async (req, res) => {
+  console.log('ik kom hier')
+
+  const objectNumber = req.params.objectNumber
+  try {
+    const dataDetail = await fetch.fetchObjectDetails(objectNumber);
+    console.log('eerste test')
+    res.render('object', { data: dataDetail, object: "/object/" });
+  } catch (error) {
+    console.log('tweede test')
+    res.status(500).send(error.message);
+  }
+});
+```
+### Template engine
+
+A templating engine enables rendering of static pages through server-side JavaScript, allowing for implementation of HTML, CSS, and images via the server. There are various types of template engines available, and I have utilized `ejs` for my implementation.
+
+To use this in the server i need to use `app.set();` 
+
+```
+    // server.js
+// where is the files
+app.set('views', 'views') 
+// files type
+app.set('view engine', 'ejs');
+```
+
+### my files
+- `views` where my `ejs` fils set.
+- `routes` where my `js` modules set.
+- `public` where my online files like `css, Javascript, images, manifest.json and serviceWorker.js`.
+- `node_modules` for the `Node js` data.
 
 
 ## How does one use this project? What are its features?

@@ -7,7 +7,6 @@ const router = express.Router();
 
 // home page
 router.get('/', async (req, res) => {
-  console.log("Hi index");
   try {
     const data = await fetch.fetchData(API_URL, API_KEY);
     res.render('index', { data: data, object: "/object/", dataDetail: undefined });
@@ -18,7 +17,7 @@ router.get('/', async (req, res) => {
   }
 })
 
-// offline page page
+// offline page
 router.get('/offline', async (req, res) => {
   try {
     res.render('offline');
