@@ -303,12 +303,6 @@ Then i used slice to change the size of the photos.
 
 ## Activity diagram
 
-## Checklist
-- one ✅
-- two ❌
--
--
--
 
 ## Sources
 [How HTTP POST request work in Node.js?](https://www.geeksforgeeks.org/how-http-post-request-work-in-node-js/)
