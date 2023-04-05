@@ -276,7 +276,32 @@ This function sends a message to the console confirming that the service worker 
 
 ## Critical rendering path
 
-<a href="https://www.site24x7.com/nl/tools/css-minimaliseren.html"></a>
+#### css
+
+The first thing I did was to minify the CSS. I used a website that takes all the whitespace and CSS properties and puts them in a single line. I showed two examples that demonstrate the difference between the original and minified file.
+
+[Minimaliseren van CSS](https://www.site24x7.com/nl/tools/css-minimaliseren.html)
+
+<img src="./readmeImages/css-old.png" alt="the results before minify css">
+
+<img src="./readmeImages/css-new.png" alt="the results after minify css">
+
+#### Photos
+
+My original performance result
+
+<img src="./readmeImages/css-new.png" alt="the results after minify css">
+
+
+I used Lazy Loading on my header and top 10 foto's that automatic wil loading in the website.
+
+<img src="./readmeImages/css-new.png" alt="the results after minify css">
+
+Then i used slice to change the size of the photos.
+
+<img src="./readmeImages/css-new.png" alt="the results after minify css">
+
+
 
 ## Activity diagram
 
