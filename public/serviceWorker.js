@@ -48,8 +48,8 @@ self.addEventListener('activate', e => {
 
 // // Call fetch event
 self.addEventListener('fetch', e => {
-    const path = new URL(e.request.url).pathname
 
+    const path = new URL(e.request.url).pathname
 
     if (e.request.headers.get('accept').includes('text/html')) {
         e.respondWith(

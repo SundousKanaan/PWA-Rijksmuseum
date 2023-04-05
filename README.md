@@ -303,13 +303,17 @@ Then i used slice to change the size of the photos.
 
 ## Activity diagram
 
+<img src="./readmeImages/Activity-Diagram.png" alt="Activity Diagram with the service worker">
+
+
 
 ## Sources
-[How HTTP POST request work in Node.js?](https://www.geeksforgeeks.org/how-http-post-request-work-in-node-js/)
-[node-fetch](https://www.npmjs.com/package/node-fetch)
-[ejs](https://ejs.co/)
-[Service Worker](https://googlechrome.github.io/samples/service-worker/basic/)
-[Lazy loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading)
+
+-[How HTTP POST request work in Node.js?](https://www.geeksforgeeks.org/how-http-post-request-work-in-node-js/)
+- [node-fetch](https://www.npmjs.com/package/node-fetch)
+- [ejs](https://ejs.co/)
+- [Service Worker](https://googlechrome.github.io/samples/service-worker/basic/)
+- [Lazy loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading)
 
 
 ---
