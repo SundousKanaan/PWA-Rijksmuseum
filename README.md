@@ -314,6 +314,14 @@ Then i used slice to change the size of the photos.
 - [Service Worker](https://googlechrome.github.io/samples/service-worker/basic/)
 - [Lazy loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading)
 
+## last checklist
+
+- Node js ✅
+- PWA App ✅
+- Service Worker ✅
+- Offline ✅
+- Back from details page to the previous page (/zoekResultaten <=> /object/objectNummber) ❌
+- Good Analysis page load ✅
 
 ---
 ### I did this project for my third year school project.
