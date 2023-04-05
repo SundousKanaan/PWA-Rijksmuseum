@@ -189,6 +189,8 @@ To use this in the server i need to use `app.set();`
 
 ```
     // server.js
+// Use the public file
+app.use(express.static('public'))
 // where is the files
 app.set('views', 'views') 
 // files type
@@ -204,7 +206,38 @@ app.set('view engine', 'ejs');
 
 ## How does one use this project? What are its features?
 
-## client- server rendering choices
+The app caters to art enthusiasts by providing them with the ability to directly access artworks from the Rijksmeseum museum onto their devices, and obtain various details about the work. Users can search for artworks by artist name, work name, type, and the materials used in the artwork's creation.
+
+They can also read the art works details during the offline mode that they viewed during the online mode.
+
+### Maak de applicatie een Progressive Web App.
+
+I converted my application into a Progressive Web App (PWA). This involved making my app installable through the browser onto my local computer. The benefits of PWA include:
+
+- High speed performance ✅
+- Ability to use the app offline ✅
+- Option to install the app on the home screen of a phone or desktop on a laptop ✅
+- Ability to receive push notifications when something happens in the background of the app. ❌
+
+#### How can I make my app a PWA/installable?
+
+To convert the app into a PWA, the following items are required:
+
+- HTTPS
+- Service Worker
+- Manifest.json file.
+
+## Service Worker
+
+To turn my prototype into a Progressive Web App, I installed a service worker as the next step.
+
+### What is a service worker?
+Service workers act as a proxy server between the web application, browser, and network (when there is a connection). Their tasks include:
+
+Creating a seamless offline experience.
+Monitoring requests and responses between the server and client.
+Enabling access to push notifications.
+
 
 ## Activity diagram
 
