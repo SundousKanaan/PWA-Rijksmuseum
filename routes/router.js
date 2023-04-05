@@ -1,6 +1,5 @@
 import express, { request , response } from 'express';
 import fetch from './fetchdata.mjs';
-// import loadingstate from "./display.mjs";
 import { API_KEY, API_URL } from './fetchdata.mjs';
 
 const router = express.Router();
@@ -10,10 +9,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   console.log("Hi index");
   try {
-    // loadingstate(req, res);
-
     const data = await fetch.fetchData(API_URL, API_KEY);
-    // res.json(data);
     res.render('index', { data: data, object: "/object/", dataDetail: undefined });
     console.log("fetch")
 
@@ -60,38 +56,43 @@ router.post('/zoekResultaten', async (req, res) => {
   const typesArray = [...new Set(Alltypes)];
   const materialsArray = [...new Set(Allmaterials)];
 
-  const searchValue = req.body.search;
+  let searchValue = req.body.search;
   let zoeken = '';
 
   console.log("klaar met fetch 1");
-
   if (MakersArray.includes(searchValue)) {
     zoeken = 'involvedMaker=' + searchValue;
-    const searchData = await fetch.fetchZoekURL(API_URL, zoeken);
+    let searchData = await fetch.fetchZoekURL(API_URL, zoeken);
     console.log("klaar met fetch 2");
-    console.log("LOOL", searchData.artObjects.webImage.url);
-    // res.render('zoeken', { data: searchData.artObjects, searchValue: searchValue, object: "/object/" });
-
+    let cleanData = searchData.artObjects.filter(item => item.webImage !== null)
+    console.log(cleanData);
+    res.render('zoeken', { data: cleanData, searchValue: searchValue, object: "/object/" });
   }
+
   else if (TitlesArray.includes(searchValue)) {
     zoeken = 'title=' + searchValue;
     const searchData = await fetch.fetchZoekURL(API_URL, zoeken);
     console.log("klaar met fetch 3");
-    res.render('zoeken', { data: searchData.artObjects, searchValue: searchValue, object: "/object/" });
+    let cleanData = searchData.artObjects.filter(item => item.webImage !== null)
+    res.render('zoeken', { data: cleanData, searchValue: searchValue, object: "/object/" });
   }
+
   else if (typesArray.includes(searchValue)) {
     zoeken = 'type=' + searchValue;
     const searchData = await fetch.fetchZoekURL(API_URL, zoeken);
     console.log("klaar met fetch 4");
-    res.render('zoeken', { data: searchData.artObjects, searchValue: searchValue, object: "/object/" });
+    let cleanData = searchData.artObjects.filter(item => item.webImage !== null)
+    res.render('zoeken', { data: cleanData, searchValue: searchValue, object: "/object/" });
   }
 
   else if (materialsArray.includes(searchValue)) {
     zoeken = 'type=' + searchValue;
     const searchData = await fetch.fetchZoekURL(API_URL, zoeken);
     console.log("klaar met fetch 5");
-    res.render('zoeken', { data: searchData.artObjects, searchValue: searchValue, object: "/object/" });
+    let cleanData = searchData.artObjects.filter(item => item.webImage !== null)
+    res.render('zoeken', { data: cleanData, searchValue: searchValue, object: "/object/" });
   }
+
   else {
     searchValue = null;
     res.render('zoeken', { searchValue: searchValue });
@@ -110,8 +111,6 @@ router.get('/object/:objectNumber', async (req, res) => {
     const dataDetail = await fetch.fetchObjectDetails(objectNumber);
     console.log('eerste test')
     res.render('object', { data: dataDetail, object: "/object/" });
-    // console.log(data.artObject.techniques);
-
   } catch (error) {
     console.log('tweede test')
     res.status(500).send(error.message);

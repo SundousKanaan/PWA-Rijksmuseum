@@ -947,6 +947,11 @@ article a:first-of-type+img {
     transform: scale(1);
 }
 
+article.offline a:first-of-type+img {
+    transform: scale(.7);
+    object-fit: contain;
+}
+
 article.openimg {
     justify-content: center;
 }
