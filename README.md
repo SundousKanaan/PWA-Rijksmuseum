@@ -50,6 +50,22 @@ npm install
 npm start
 ```
 
+## Making server
+
+### Install Express
+
+To create a server for my application, I utilized the express library which was installed via npm.
+
+```
+npm install express
+```
+
+then i have created a server.js file in which I will construct my server.
+
+### Express Import
+
+
+
 ## How does one use this project? What are its features?
 
 ## client- server rendering choices
