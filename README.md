@@ -288,24 +288,20 @@ The first thing I did was to minify the CSS. I used a website that takes all the
 
 #### Photos
 
-My original performance result
+The original performance result
 
-<img src="./readmeImages/css-new.png" alt="the results after minify css">
+<img src="./readmeImages/test-original.png" alt="the original performance result">
 
 
 I used Lazy Loading on my header and top 10 foto's that automatic wil loading in the website.
 
-<img src="./readmeImages/css-new.png" alt="the results after minify css">
+<img src="./readmeImages/test-lazy.png" alt="the original performance result with Lazy Loading">
 
 Then i used slice to change the size of the photos.
 
-<img src="./readmeImages/css-new.png" alt="the results after minify css">
-
-
+<img src="./readmeImages/test-lazy-slice.png" alt="the original performance result with Lazy Loading and slice on the images src">
 
 ## Activity diagram
-
-## Enhancements
 
 ## Checklist
 - one ✅
