@@ -276,6 +276,8 @@ This function sends a message to the console confirming that the service worker 
 
 ## Critical rendering path
 
+<a href="https://www.site24x7.com/nl/tools/css-minimaliseren.html"></a>
+
 ## Activity diagram
 
 ## Enhancements
