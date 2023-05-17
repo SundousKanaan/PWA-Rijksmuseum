@@ -7,7 +7,8 @@ This specific application is the server-side version of [Rijksmuseum](https://gi
 <img src="./readmeImages/homescreen.png" alt="screen shot for the home page of the app.">
 
 - [live demo](https://pwa-rijksmuseum-production.up.railway.app/)
-Note: 
+
+**Note:** 
 - The search is already working, but the API is slow, so it takes some time to give results.
 - Also, the entire search name must be written correctly, taking into account the capital letters, otherwise you will not get results, and this is because of the API as well.
 
